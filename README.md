@@ -1,4 +1,4 @@
-Project Euler Project
+Project Euler Problems
 
 Friend Code:
 681169_764a0c66543c714ac2e9cb1ed3cd3cb1
