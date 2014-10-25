@@ -1,12 +1,14 @@
 require 'prime'
 def circular_primes max
   circ_prime  = []
+
   Prime.each(max) do |prime|
     str = prime.to_s.split('')
-    circular = str.count == 1 ? true : (1..(str.count - 1)).map do |j|
-      str.rotate(j).join.to_i.prime?
-    end.reduce(:&)
-    circ_prime << prime if circular
+    count = 0
+    (1..(str.count)).map do |j|
+      str.rotate(j).join.to_i.prime? ? count +=1 : break
+      count == str.count ? circ_prime << prime : nil
+    end
   end
   circ_prime
 end
@@ -17,6 +19,6 @@ describe 'circular_primes' do
   end
   it 'gives the number of circular primes under 1M' do
     less_than_1_million = circular_primes(1000000)
-    expect(less_than_1_million.count).to eq 0
+    expect(less_than_1_million.count).to eq 55
   end
 end
